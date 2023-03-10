@@ -1,33 +1,33 @@
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import { useEffect, useState } from "react";
-import { HiCheckCircle, HiOutlineDotsVertical } from "react-icons/hi";
-import { RiAddLine, RiKeyboardBoxLine, RiSettings2Line } from "react-icons/ri";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import { useEffect, useState } from 'react';
+import { HiCheckCircle, HiOutlineDotsVertical } from 'react-icons/hi';
+import { RiAddLine, RiKeyboardBoxLine, RiSettings2Line } from 'react-icons/ri';
 
-import { CgLogOut } from "react-icons/cg";
-import { ImCoinDollar } from "react-icons/im";
-import { BiUser } from "react-icons/bi";
-import { GrLanguage } from "react-icons/gr";
-import { MdHelpOutline } from "react-icons/md";
+import { CgLogOut } from 'react-icons/cg';
+import { ImCoinDollar } from 'react-icons/im';
+import { BiUser } from 'react-icons/bi';
+import { GrLanguage } from 'react-icons/gr';
+import { MdHelpOutline } from 'react-icons/md';
 
-import images from "~/assets/images";
-import Button from "~/components/Button/Button";
-import Menu from "~/components/Popper/Menu/Menu";
-import { Messages } from "~/components/Icons/Icons";
-import { Inbox } from "~/components/Icons/Icons";
-import Image from "~/components/Image/Image";
-import Search from "../Search/Search";
+import images from '~/assets/images';
+import Button from '~/components/Button/Button';
+import Menu from '~/components/Popper/Menu/Menu';
+import { Messages } from '~/components/Icons/Icons';
+import { Inbox } from '~/components/Icons/Icons';
+import Image from '~/components/Image/Image';
+import Search from '../Search/Search';
 
-function Header() {
+function Header({ className }) {
   const [currentUser, setCurrentUser] = useState(true);
 
   //handle
   const handleMenuChange = (item) => {
     switch (item.type) {
-      case "language":
+      case 'language':
         //handle
         break;
-      case "logout":
+      case 'logout':
         setCurrentUser(false);
         break;
       default:
@@ -36,62 +36,64 @@ function Header() {
   const MENU_ITEMS = [
     {
       icon: <GrLanguage className="text-[18px] w-[22px]" />,
-      title: "English",
+      title: 'English',
       children: {
-        title: "Language",
+        title: 'Language',
         data: [
           {
-            type: "language",
-            code: "en",
-            title: "English",
+            type: 'language',
+            code: 'en',
+            title: 'English',
           },
           {
-            type: "language",
-            code: "vi",
-            title: "Tiếng Việt",
+            type: 'language',
+            code: 'vi',
+            title: 'Tiếng Việt',
           },
         ],
       },
     },
     {
       icon: <MdHelpOutline className="text-[22px] w-[22px]" />,
-      title: "Feedback and help",
-      to: "feedback",
+      title: 'Feedback and help',
+      to: 'feedback',
     },
     {
       icon: <RiKeyboardBoxLine className="text-[22px] w-[22px]" />,
-      title: "Keyboard shortcuts",
+      title: 'Keyboard shortcuts',
     },
   ];
 
   const userMenu = [
     {
       icon: <BiUser className="text-[22px] w-[22px]" />,
-      title: "View profile",
-      to: "profile",
+      title: 'View profile',
+      to: 'profile',
     },
     {
       icon: <ImCoinDollar className="text-[22px] w-[22px]" />,
-      title: "Get coins",
-      to: "coins",
+      title: 'Get coins',
+      to: 'coins',
     },
     {
       icon: <RiSettings2Line className="text-[22px] w-[22px]" />,
-      title: "Settings",
-      to: "settings",
+      title: 'Settings',
+      to: 'settings',
     },
     ...MENU_ITEMS,
     {
       icon: <CgLogOut className="text-[22px] w-[22px] rotate-[1/2]" />,
-      title: "Log out",
+      title: 'Log out',
       separate: true,
-      type: "logout",
+      type: 'logout',
     },
   ];
 
   return (
     <header className="shadow-header w-full flex justify-center">
-      <div className="w-container px-[20px] h-[60px] flex items-center justify-between ">
+      <div
+        className={`${className} px-[20px] h-[60px] flex items-center justify-between `}
+      >
         {/* logo */}
         <div>
           <img src={images.logo} alt="" />

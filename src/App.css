@@ -13,7 +13,7 @@ button {
 }
 
 .header__search::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 1.5px;
   height: 28px;
@@ -38,6 +38,46 @@ body .tippy-box {
   background-color: #545454eb;
   padding: 0 2px 4px;
 }
-.tippy-box[data-placement^="bottom"] > .tippy-arrow:before {
+.tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
   border-bottom-color: #545454eb;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: 8px;
+  border: 3px solid gray;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: gray transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+.loading {
+  animation: lds-ring 0.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  font-size: 15px;
+  font-weight: 700;
+  color: gray;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

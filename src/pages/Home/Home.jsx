@@ -1,9 +1,12 @@
-import { DefaultLayout } from "~/components/Layouts/";
+import { LoadIcon } from '~/components/Icons/Icons';
+import { DefaultLayout } from '~/components/Layouts/';
 
 function Home() {
   return (
     <div>
-      <DefaultLayout />
+      <DefaultLayout>
+        <LoadIcon />
+      </DefaultLayout>
     </div>
   );
 }

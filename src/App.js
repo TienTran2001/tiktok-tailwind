@@ -1,9 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import { publicRoutes } from "~/Routes";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { publicRoutes } from '~/Routes';
+import './App.css';
 
 function App() {
+  useEffect(() => {
+    document.title = 'TikTok - Make Your Day!';
+  }, []);
   return (
     <Router>
       <div className="font-ibm">
