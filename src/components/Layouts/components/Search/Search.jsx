@@ -3,33 +3,33 @@ import { useEffect, useState, useRef } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 
+import * as searchServices from '~/apiServices/searchServices';
+
 import { BiLoaderAlt } from 'react-icons/bi';
 import { CloseIcon, SearchIcon } from '~/components/Icons/Icons';
 import AccountItem from '../AccountItem/AccountItem';
 import { useDebounce } from '~/hooks';
+
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const debounceValue = useDebounce(searchValue, 600);
+  const debounceValue = useDebounce(searchValue, 500);
 
   const inputRef = useRef();
   useEffect(() => {
     if (!debounceValue.trim()) return;
-    setLoading(true);
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounceValue
-      )}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+
+    const fetchApi = async () => {
+      setLoading(true);
+      const result = await searchServices.search(debounceValue);
+      setSearchResult(result);
+      setLoading(false);
+    };
+
+    fetchApi();
   }, [debounceValue]);
 
   const handleClearInput = () => {

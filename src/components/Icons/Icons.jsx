@@ -74,7 +74,7 @@ export const CloseIcon = ({ className }) => {
 
 export const LoadIcon = () => {
   return (
-    <div class="lds-ring">
+    <div className="lds-ring">
       <div></div>
       <div></div>
       <div></div>
