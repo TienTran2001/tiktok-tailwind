@@ -6,19 +6,22 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { BiLoaderAlt } from 'react-icons/bi';
 import { CloseIcon, SearchIcon } from '~/components/Icons/Icons';
 import AccountItem from '../AccountItem/AccountItem';
+import { useDebounce } from '~/hooks';
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const debounceValue = useDebounce(searchValue, 600);
+
   const inputRef = useRef();
   useEffect(() => {
-    if (!searchValue.trim()) return;
+    if (!debounceValue.trim()) return;
     setLoading(true);
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchValue
+        debounceValue
       )}&type=less`
     )
       .then((res) => res.json())
@@ -27,7 +30,7 @@ function Search() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [searchValue]);
+  }, [debounceValue]);
 
   const handleClearInput = () => {
     setSearchValue('');
